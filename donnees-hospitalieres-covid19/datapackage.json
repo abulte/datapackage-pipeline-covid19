@@ -1,13 +1,13 @@
 {
-  "bytes": 4633524,
-  "count_of_rows": 174243,
-  "hash": "e0313427a118c5a1285b9b31af89df57",
+  "bytes": 4653116,
+  "count_of_rows": 174946,
+  "hash": "56287a63dcc7b2dd9acc363a5dcc24f3",
   "name": "donnees_hospitalieres_covid19",
   "profile": "data-package",
   "resources": [
     {
-      "bytes": 2192915,
-      "count_of_rows": 75144,
+      "bytes": 2202326,
+      "count_of_rows": 75447,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -17,9 +17,10 @@
         "quoteChar": "\"",
         "skipInitialSpace": false
       },
+      "dpp:streaming": true,
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "c409ee53b0714dab9797d3858dba442a",
+      "hash": "fe7d6383d9484a1a9c35ef17863e7ce9",
       "name": "donnees-hospitalieres-covid19",
       "path": "donnees-hospitalieres-covid19.csv",
       "profile": "tabular-data-resource",
@@ -67,7 +68,7 @@
       }
     },
     {
-      "bytes": 586938,
+      "bytes": 589383,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -77,9 +78,10 @@
         "quoteChar": "\"",
         "skipInitialSpace": false
       },
+      "dpp:streaming": true,
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "a93ccd220105011cbbc73e461468b609",
+      "hash": "ce6a67543d273969407d160c7fc062a8",
       "name": "donnees-hospitalieres-nouveaux-covid19",
       "path": "donnees-hospitalieres-nouveaux-covid19.csv",
       "profile": "tabular-data-resource",
@@ -122,7 +124,7 @@
       }
     },
     {
-      "bytes": 1413768,
+      "bytes": 1419710,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -132,9 +134,10 @@
         "quoteChar": "\"",
         "skipInitialSpace": false
       },
+      "dpp:streaming": true,
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "90c2b9d8e6e0ba8d15dce3d902c649f4",
+      "hash": "786c9dcfedbf81619db51c727c750ff1",
       "name": "donnees-hospitalieres-classe-age-covid19",
       "path": "donnees-hospitalieres-classe-age-covid19.csv",
       "profile": "tabular-data-resource",
@@ -182,7 +185,7 @@
       }
     },
     {
-      "bytes": 439903,
+      "bytes": 441697,
       "dialect": {
         "caseSensitiveHeader": false,
         "delimiter": ",",
@@ -192,9 +195,10 @@
         "quoteChar": "\"",
         "skipInitialSpace": false
       },
+      "dpp:streaming": true,
       "encoding": "utf-8",
       "format": "csv",
-      "hash": "7dede71d066520428d413e6177df6bff",
+      "hash": "1220ba3428d6944021f4a29c9020c235",
       "name": "donnees-hospitalieres-etablissements-covid19",
       "path": "donnees-hospitalieres-etablissements-covid19.csv",
       "profile": "tabular-data-resource",
