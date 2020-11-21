@@ -1,7 +1,7 @@
 import requests
 import logging
 
-from dataflows import Flow, load, dump_to_zip, printer, add_metadata
+from dataflows import Flow, load, dump_to_zip, printer, add_metadata, dump_to_path
 from dataflows import validate, update_resource, finalizer
 from tabulate import tabulate
 
@@ -60,6 +60,7 @@ def donnees_hospitalieres_covid19():
             title='''donnees-hospitalieres-covid19'''
         ),
         dump_to_zip('donnees-hospitalieres-covid19.zip'),
+        dump_to_path('donnees-hospitalieres-covid19'),
         finalizer(done),
     )
     flow.process()
