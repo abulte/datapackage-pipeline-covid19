@@ -23,7 +23,7 @@ RESOURCES = [
     },
     {
         'id': '41b9bd2a-b5b6-4271-8878-e45a8902ef00',
-        'name': 'donnees-hospitalieres-etablissements-covid19-toto',
+        'name': 'donnees-hospitalieres-etablissements-covid19',
     },
 ]
 
