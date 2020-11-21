@@ -98,9 +98,3 @@ dpp run --verbose ./donnees-hospitalieres-covid19
 ```
 
 The output is a [Data Package](https://specs.frictionlessdata.io/#what-s-a-data-package), containing all the data and it's description in a zip file `donnees-hospitalieres-covid19.zip`.
-
-## TODO
-
-- add all the files from the dataset
-- run on a github action every day at 8pm
-- find a way to host the schemas locally as json if possible
