@@ -4,9 +4,30 @@ Gather, validate and describe the ["Données hospitalières relatives à l'épid
 
 See also [the schemas repository](https://github.com/abulte/schema-donnees-hospitalieres-covid19).
 
-## DataFlows 
+## Data Package Pipeline (dpp)
 
-This is a [DataFlow](https://github.com/datahq/dataflows).
+`pipeline-spec.yaml` describes a [datapackage-pipeline](https://github.com/frictionlessdata/datapackage-pipelines). This pipeline simply calls a DataFlow (see below), but it could trigger other stuff, like webhooks or other flows.
+
+Run it with:
+
+```
+pip install datapackage-pipelines
+dpp run --verbose ./donnees-hospitalieres-covid19
+```
+
+The output is a [Data Package](https://specs.frictionlessdata.io/#what-s-a-data-package), containing all the data and it's description in a zip file `donnees-hospitalieres-covid19.zip` and a directory `donnees-hospitalieres-covid19`.
+
+dpp also comes with a dashboard:
+
+```
+dpp serve
+```
+
+## DataFlow
+
+`donnees_hospitalieres_covid19.py` is a [DataFlow](https://github.com/datahq/dataflows).
+
+This DataFlow can be run standalone (see below) or through dpp (see above).
 
 ```
 $ pip install dataflows
@@ -87,14 +108,3 @@ Done!
 ---------------  -------  --------------------------------  -----------------------------
          174243  4638993  591e66984679558dfae3f6b33d80499e  donnees_hospitalieres_covid19
 ```
-
-## Data Package Pipeline
-
-This is a [datapackage-pipeline](https://github.com/frictionlessdata/datapackage-pipelines).
-
-```
-pip install datapackage-pipelines
-dpp run --verbose ./donnees-hospitalieres-covid19
-```
-
-The output is a [Data Package](https://specs.frictionlessdata.io/#what-s-a-data-package), containing all the data and it's description in a zip file `donnees-hospitalieres-covid19.zip`.

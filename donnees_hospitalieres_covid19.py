@@ -36,16 +36,8 @@ def get_schema(resource):
     return r.json() if r.ok else None
 
 
-def done(stats):
-    print(f"""
-Done!
-=====
-{tabulate([stats], headers='keys')}
-""")
-
-
-def donnees_hospitalieres_covid19():
-    flow = Flow(
+def flow(*args):
+    return Flow(
         # Load inputs
         *[load(
             f"https://www.data.gouv.fr/fr/datasets/r/{resource['id']}", 
@@ -53,7 +45,9 @@ def donnees_hospitalieres_covid19():
             format='csv',
             override_schema=get_schema(resource['name'])
         ) for resource in RESOURCES],
-        printer(num_rows=1, last_rows=10),
+        # necessary for dpp integration
+        # https://github.com/frictionlessdata/datapackage-pipelines/issues/150#issuecomment-432152302
+        *[update_resource(resource['name'], **{'dpp:streaming': True}) for resource in RESOURCES],
         # Save the results
         add_metadata(
             name='donnees_hospitalieres_covid19', 
@@ -61,10 +55,11 @@ def donnees_hospitalieres_covid19():
         ),
         dump_to_zip('donnees-hospitalieres-covid19.zip'),
         dump_to_path('donnees-hospitalieres-covid19'),
-        finalizer(done),
     )
-    flow.process()
 
 
 if __name__ == '__main__':
-    donnees_hospitalieres_covid19()
+    Flow(
+        flow(), 
+        printer(num_rows=1, last_rows=10), 
+    ).process()
