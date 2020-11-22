@@ -30,14 +30,4 @@ jobs:
 
     - name: Run dataflow
       run: |
-        python donnees_hospitalieres_covid19.py
-
-    - name: Push generated data
-      if: github.ref == 'refs/heads/master'
-      run: |
-        git config user.email "actions@github.com"
-        git config user.name "actions-user"
-        git add donnees-hospitalieres-covid19.zip
-        git add donnees-hospitalieres-covid19
-        git commit -am "New data at $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-        git push origin master
+        python etalab_flows/flows/donnees_hospitalieres_covid19.py
