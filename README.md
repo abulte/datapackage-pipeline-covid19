@@ -6,16 +6,16 @@ See also [the schemas repository](https://github.com/abulte/schema-donnees-hospi
 
 ## Data Package Pipeline (dpp)
 
-`pipeline-spec.yaml` describes a [datapackage-pipeline](https://github.com/frictionlessdata/datapackage-pipelines). This pipeline simply calls a DataFlow (see below), but it could trigger other stuff, like webhooks or other flows.
+`pipeline-spec.yaml` describes some [datapackage-pipelines](https://github.com/frictionlessdata/datapackage-pipelines). This pipeline simply calls a DataFlow (see below), but it could trigger other stuff, like webhooks or other flows.
 
 Run it with:
 
 ```
 pip install datapackage-pipelines
-dpp run --verbose ./donnees-hospitalieres-covid19
+AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy dpp run --verbose ./donnees-hospitalieres-covid19
 ```
 
-The output is a [Data Package](https://specs.frictionlessdata.io/#what-s-a-data-package), containing all the data and it's description in a zip file `donnees-hospitalieres-covid19.zip` and a directory `donnees-hospitalieres-covid19`.
+The output is a [Data Package](https://specs.frictionlessdata.io/#what-s-a-data-package), containing all the data and it's description, uploaded to an S3 bucket.
 
 dpp also comes with a dashboard:
 
@@ -25,14 +25,13 @@ dpp serve
 
 ## DataFlow
 
-`donnees_hospitalieres_covid19.py` is a [DataFlow](https://github.com/datahq/dataflows).
+`etalab_flows/flows/donnees_hospitalieres_covid19.py` is a [DataFlow](https://github.com/datahq/dataflows).
 
 This DataFlow can be run standalone (see below) or through dpp (see above).
 
 ```
 $ pip install dataflows
-$ python donnees_hospitalieres_covid19.py
-[warning] no schema found for donnees-hospitalieres-etablissements-covid19-toto, infering.
+$ python etalab_flows/flows/donnees_hospitalieres_covid19.py
 donnees-hospitalieres-covid19:
 #             dep         sexe  jour               hosp          rea          rad           dc
          (string)    (integer)  (date)        (integer)    (integer)    (integer)    (integer)
@@ -107,4 +106,33 @@ Done!
   count_of_rows    bytes  hash                              dataset_name
 ---------------  -------  --------------------------------  -----------------------------
          174243  4638993  591e66984679558dfae3f6b33d80499e  donnees_hospitalieres_covid19
+```
+
+## Custom processors
+
+`processors.dumpers.S3Dumper` saves the datapackage in a S3 bucket.
+
+Usage in `pipeline-spec.yml`:
+
+```yaml
+my-pipeline:
+  pipeline:
+    - 
+      run: etalab_flows.processors.dpp_dump_to_s3
+      parameters:
+        out_path: s3://dataflows/donnees-hospitalieres-covid19
+        s3_endpoint_url: https://object.files.data.gouv.fr/
+```
+
+Usage in a dataflow (in `etalab_flows/flows`):
+
+```python
+from processors import dump_to_s3
+
+Flow(
+  dump_to_s3(
+    out_path="s3://dataflows/donnees-hospitalieres-covid19",
+    s3_endpoint_url="https://object.files.data.gouv.fr/",
+  )
+)
 ```

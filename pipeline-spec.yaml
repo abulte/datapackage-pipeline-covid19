@@ -4,4 +4,22 @@ donnees-hospitalieres-covid19:
   environment:
     DEBUG: true
   pipeline:
-    - flow: donnees_hospitalieres_covid19
+    - flow: flows.donnees_hospitalieres_covid19
+    - 
+      run: etalab_flows.processors.dpp_dump_to_s3
+      parameters:
+        out_path: s3://dataflows/donnees-hospitalieres-covid19
+        s3_endpoint_url: https://object.files.data.gouv.fr/
+
+test:
+  title: Données de test
+  description: Test pipeline
+  environment:
+    DEBUG: true
+  pipeline:
+    - flow: flows.test_dataflow
+    - 
+      run: etalab_flows.processors.dpp_dump_to_s3
+      parameters:
+        out_path: s3://dataflows/donnees-test
+        s3_endpoint_url: https://object.files.data.gouv.fr/

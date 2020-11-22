@@ -1,0 +1,1 @@
+from processors.dumpers import S3Dumper as dump_to_s3

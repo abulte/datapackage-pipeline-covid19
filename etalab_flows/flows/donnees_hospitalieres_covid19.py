@@ -53,8 +53,6 @@ def flow(*args):
             name='donnees_hospitalieres_covid19', 
             title='''donnees-hospitalieres-covid19'''
         ),
-        dump_to_zip('donnees-hospitalieres-covid19.zip'),
-        dump_to_path('donnees-hospitalieres-covid19'),
     )
 
 
