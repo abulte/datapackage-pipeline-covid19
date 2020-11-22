@@ -136,3 +136,22 @@ Flow(
   )
 )
 ```
+
+Env vars needed for authentification on s3 backend:
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
+## Deploy
+
+This repository is compatible with Dokku, with a linked Redis database created beforehand. Need config vars:
+
+```
+AWS_ACCESS_KEY_ID:      xxx
+AWS_SECRET_ACCESS_KEY:  yyy
+DPP_CELERY_BROKER:      redis://[redis-user]:[redis-password]@[redis-host]:6379/6
+# DPP_REDIS_HOST will use Redis on database 5
+DPP_REDIS_HOST:         [redis-host]
+DPP_REDIS_PASSWORD:     [redis-password]
+DPP_REDIS_USERNAME:     [redis-user]
+TZ:                     Europe/Paris
+```
