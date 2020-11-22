@@ -23,3 +23,6 @@ test:
       parameters:
         out_path: s3://dataflows/donnees-test
         s3_endpoint_url: https://object.files.data.gouv.fr/
+  schedule:
+    # minute hour day_of_week day_of_month month_of_year
+    crontab: '0 */5 * * *'

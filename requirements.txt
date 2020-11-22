@@ -1,2 +1,2 @@
-dataflows
 -e etalab_flows
+-e git+git@github.com:abulte/datapackage-pipelines.git#egg=datapackage_pipelines
