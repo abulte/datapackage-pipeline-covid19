@@ -117,7 +117,7 @@ Usage in `pipeline-spec.yml`:
 ```yaml
 my-pipeline:
   pipeline:
-    - 
+    -
       run: etalab_flows.processors.dpp_dump_to_s3
       parameters:
         out_path: s3://dataflows/donnees-hospitalieres-covid19
@@ -149,6 +149,7 @@ This repository is compatible with Dokku, with a linked Redis database created b
 AWS_ACCESS_KEY_ID:      xxx
 AWS_SECRET_ACCESS_KEY:  yyy
 DPP_CELERY_BROKER:      redis://[redis-user]:[redis-password]@[redis-host]:6379/6
+DPP_CELERY_TIMEZONE:    Europe/Paris
 # DPP_REDIS_HOST will use Redis on database 5
 DPP_REDIS_HOST:         [redis-host]
 DPP_REDIS_PASSWORD:     [redis-password]
